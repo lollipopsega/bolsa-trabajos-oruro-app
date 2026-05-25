@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Bolsa de Trabajos Oruro: descarga la aplicacion, revisa publicaciones laborales y contacta con la pagina oficial." />
+  <title>Bolsa de Trabajos Oruro</title>
+  <style>
+    :root {
+      --blue-950: #021f45;
+      --blue-900: #063266;
+      --blue-800: #0a427c;
+      --orange: #f47a22;
+      --orange-dark: #d95f0b;
+      --ink: #102033;
+      --muted: #5f738b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 14% 10%, rgba(244, 122, 34, 0.18), transparent 30%),
+        linear-gradient(135deg, #eaf2fb 0%, #f8fbff 52%, #dceafa 100%);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .page {
+      width: min(980px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 28px 0 34px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      aspect-ratio: 2048 / 764;
+      min-height: 0;
+      padding: 0;
+      color: #ffffff;
+      background: url("assets/portada-personas.jpg");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      box-shadow: 0 24px 60px rgba(2, 31, 69, 0.24);
+    }
+
+    .hero:before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 18px;
+      pointer-events: none;
+    }
+
+    .brand {
+      position: relative;
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 18px;
+      align-items: center;
+      visibility: hidden;
+      display: none;
+    }
+
+    .logo {
+      width: 96px;
+      height: 96px;
+      border: 3px solid var(--orange);
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--blue-950);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.26);
+    }
+
+    .kicker {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(32px, 6vw, 58px);
+      line-height: 0.95;
+      text-transform: uppercase;
+    }
+
+    .hero p {
+      position: relative;
+      max-width: 780px;
+      margin: 130px 0 0;
+      color: #ffffff;
+      font-size: clamp(15px, 2.4vw, 19px);
+      line-height: 1.38;
+      font-weight: 800;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.34);
+      display: none;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .panel {
+      border: 1px solid #d4e1ef;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 18px 44px rgba(2, 31, 69, 0.12);
+    }
+
+    .actions,
+    .trust-panel {
+      padding: 22px;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      color: var(--blue-950);
+      font-size: 24px;
+      line-height: 1.15;
+    }
+
+    .actions p,
+    .trust-panel p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .button-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 58px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      color: #ffffff;
+      background: var(--orange);
+      font-size: 16px;
+      font-weight: 900;
+      text-decoration: none;
+      box-shadow: 0 12px 24px rgba(244, 122, 34, 0.2);
+    }
+
+    .btn:hover {
+      background: var(--orange-dark);
+    }
+
+    .btn.secondary {
+      color: var(--blue-950);
+      background: #dceafa;
+      box-shadow: none;
+    }
+
+    .btn.secondary:hover {
+      color: #ffffff;
+      background: var(--blue-800);
+    }
+
+    .btn.dark {
+      background: var(--blue-900);
+    }
+
+    .btn.dark:hover {
+      background: var(--blue-950);
+    }
+
+    .btn small {
+      display: block;
+      margin-top: 3px;
+      font-size: 12px;
+      font-weight: 700;
+      opacity: 0.82;
+    }
+
+    .arrow {
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .business-panel {
+      display: grid;
+      align-content: start;
+      gap: 14px;
+      overflow: hidden;
+      position: relative;
+      padding: 0;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(235, 246, 255, 0.96));
+    }
+
+    .business-panel:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 7px;
+      height: 100%;
+      background: var(--orange);
+    }
+
+    .business-image {
+      width: 100%;
+      height: 190px;
+      display: block;
+      object-fit: cover;
+      object-position: center 42%;
+      background: var(--blue-900);
+    }
+
+    .business-content {
+      display: grid;
+      gap: 13px;
+      padding: 20px 22px 22px 28px;
+    }
+
+    .business-kicker {
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    .business-panel h2 {
+      margin-bottom: 0;
+      font-size: clamp(24px, 3.4vw, 32px);
+    }
+
+    .business-panel p {
+      margin-bottom: 0;
+      font-size: 15px;
+    }
+
+    .business-points {
+      display: grid;
+      gap: 8px;
+      margin: 2px 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .business-points li {
+      display: block;
+      padding: 9px 12px;
+      border-radius: 12px;
+      color: var(--blue-950);
+      background: rgba(220, 234, 250, 0.74);
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .business-note {
+      padding: 12px 14px;
+      border-radius: 14px;
+      color: #063266;
+      background: #fff7ed;
+      font-size: 14px;
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    .info {
+      margin-top: 18px;
+      padding: 16px;
+      border-left: 5px solid var(--orange);
+      border-radius: 16px;
+      background: #fff7ed;
+      color: #7c2d12;
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    footer {
+      margin-top: 20px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    @media (max-width: 760px) {
+      .hero {
+        padding: 28px 20px;
+      }
+
+      .brand {
+        grid-template-columns: 78px 1fr;
+      }
+
+      .logo {
+        width: 78px;
+        height: 78px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="brand">
+        <img class="logo" src="https://i.imgur.com/K0sgF6N.png" alt="Logo Bolsa de Trabajos Oruro" />
+        <div>
+          <span class="kicker">Canal oficial</span>
+          <h1>Bolsa de Trabajos Oruro</h1>
+        </div>
+      </div>
+      <p>Conectamos empresas, comercios y personas listas para trabajar. Desde esta pagina puedes descargar la aplicacion, revisar publicaciones y seguirnos en Facebook.</p>
+    </section>
+
+    <section class="cards">
+      <article class="panel actions">
+        <h2>Accesos principales</h2>
+        <p>Elige una opcion para continuar.</p>
+        <div class="button-list">
+          <a class="btn" href="https://github.com/lollipopsega/bolsa-trabajos-oruro-app/raw/main/apk/BolsaTrabajosOruro-contacto-visible-v16.apk">
+            <span>Descargar aplicacion APK<small>Instalador Android de Bolsa de Trabajos Oruro</small></span>
+            <span class="arrow">&#8595;</span>
+          </a>
+          <div class="info">Si Android muestra una advertencia al descargar, es porque la app todavía no está publicada en Play Store.</div>
+          <a class="btn dark" href="https://trabajosorurobolivia.blogspot.com/">
+            <span>Ver trabajos en Blogspot<small>Pagina oficial de publicaciones laborales</small></span>
+            <span class="arrow">&#8594;</span>
+          </a>
+          <a class="btn secondary" href="https://www.facebook.com/profile.php?id=61576327982059">
+            <span>Facebook oficial<small>Novedades, publicaciones y contacto</small></span>
+            <span class="arrow">&#8594;</span>
+          </a>
+          <a class="btn secondary" href="https://wa.me/59164559364">
+            <span>Publicar un trabajo<small>WhatsApp oficial: 64559364</small></span>
+            <span class="arrow">&#8594;</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="panel business-panel">
+        <div class="business-content">
+          <span class="business-kicker">Para empresas y anunciantes</span>
+          <h2>¿Tienes una vacante disponible?</h2>
+          <p>Envíanos los datos del puesto y publicamos tu solicitud laboral para que los postulantes se comuniquen directamente contigo.</p>
+          <ul class="business-points">
+            <li>Publicaciones laborales para Oruro</li>
+            <li>Contacto directo con postulantes</li>
+            <li>Difusión rápida en nuestros canales</li>
+          </ul>
+          <div class="business-note">Para publicar, usa el botón “Publicar un trabajo” de los accesos principales.</div>
+        </div>
+      </article>
+    </section>
+
+    <footer>Bolsa de Trabajos Oruro - Oruro, Bolivia</footer>
+  </main>
+</body>
+</html>
