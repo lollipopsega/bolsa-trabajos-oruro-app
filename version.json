@@ -1,6 +1,6 @@
 {
-  "versionCode": 22,
-  "versionName": "0.22",
+  "versionCode": 23,
+  "versionName": "0.23",
   "downloadUrl": "https://lollipopsega.github.io/bolsa-trabajos-oruro-app/",
-  "message": "Nueva version disponible: ahora puedes ver el detalle completo del trabajo dentro de la app."
+  "message": "Nueva version disponible: se corrigio la vigencia para que coincida con Blogger."
 }
